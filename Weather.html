@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Magic Mirror!</title>
+</head>
+
+<body bgcolor="black" text="white">
+
+<p id="Location"></p>
+<p id="Temp"></p>
+<p id="Today"></p>
+
+<p>Forecast</p>
+<p id="Day1"></p>
+<p id="Day2"></p>
+<p id="Day3"></p>
+<p id="Day4"></p>
+<p id="Day5"></p>
+<p id="Day6"></p>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+<!-- Current -->
+<script>
+jQuery(document).ready(function($) {
+  $.ajax({
+  url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/conditions/q/MI/Ann_Arbor.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+  var city = parsed_json['location']['city'];
+  var state = parsed_json['location']['state'];
+  var temp_f = parsed_json['current_observation']['temp_f'];
+  var humid = parsed_json['current_observation']['relative_humidity'];
+  document.getElementById("Location").innerHTML = city + ", " + state;
+  document.getElementById("Temp").innerHTML = "Currently: " + temp_f + " Degrees";
+  }
+  });
+});
+</script>
+
+<!-- Forecast -->
+<script>
+jQuery(document).ready(function($) {
+  $.ajax({
+  url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/forecast10day/q/MI/Ann_Arbor.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+
+  //Today
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit']
+  document.getElementById("Today").innerHTML = "Today: H = " + dayHigh + " L = " + dayLow;
+
+  //Day 1
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][1]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][1]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][1]['low']['fahrenheit']
+  document.getElementById("Day1").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+
+  //Day 2
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][2]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][2]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][2]['low']['fahrenheit']
+  document.getElementById("Day2").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+
+  //Day 3
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][3]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][3]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][3]['low']['fahrenheit']
+  document.getElementById("Day3").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+
+  //Day 4
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][4]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][4]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][4]['low']['fahrenheit']
+  document.getElementById("Day4").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+
+  //Day 5
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][5]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][5]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][5]['low']['fahrenheit']
+  document.getElementById("Day5").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+
+  //Day 6
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][6]['date']['weekday']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][6]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][6]['low']['fahrenheit']
+  document.getElementById("Day6").innerHTML = dayDay + ": H = " + dayHigh + " L = " + dayLow;
+  }
+  });
+});
+</script>
+
+</body>
+
+</html>
