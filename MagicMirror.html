@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+
+<script>
+
+
+
+</script>
+
+
+
+
+<script>
+
+var run = true;
+
+function timerReset(){
+	
+		document.getElementById("taskName").innerHTML = "TASK";
+		document.getElementById("timer").innerHTML = "TIME";
+	
+	
+}
+
+
+function setTaskDelay(time, name){
+	
+	document.getElementById("timer").innerHTML = time;
+	document.getElementById("taskName").innerHTML = name;
+	
+	
+}
+
+
+
+
+
+function setTask(time, name , delay){
+	
+	setTimeout(
+		function(){ 
+			setTaskDelay(time, name)
+						}, 
+				delay * 1000);
+}
+
+function completeTasks(){
+	
+	if(run == true)
+	{
+		var totalDelay = 0;
+		var tasks = [];
+		tasks.push({ name: 'Brush Teeth', time:5 });
+		tasks.push({ name: 'Clean Hair', time:7 });
+		tasks.push({ name: 'Wash Face', time:6 });
+		
+		
+		setTask(tasks[0].time, tasks[0].name);
+	
+		totalDelay = totalDelay + tasks[0].time;
+		
+		for( i = 1; i<tasks.length; ++i){
+			setTask(tasks[i].time, tasks[i].name, totalDelay)
+			totalDelay = totalDelay + tasks[i].time;
+		}
+		
+		
+
+		setTask(" ", "All Done!", totalDelay);
+		setTask("TIMER", "TASK", (totalDelay+5));
+	
+
+
+		run = !run;
+	}
+	
+	else{
+		
+		run = !run;
+	}
+
+}
+
+
+
+
+</script>
+
+
+
+
+<script>
+jQuery(document).ready(function($) {
+  $.ajax({
+  url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/conditions/q/MI/Ann_Arbor.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+  var city = parsed_json['location']['city'];
+  var state = parsed_json['location']['state'];
+  var temp_f = parsed_json['current_observation']['temp_f'];
+  var humid = parsed_json['current_observation']['relative_humidity'];
+  document.getElementById("Location").innerHTML = city + ", " + state;
+  document.getElementById("Temp").innerHTML = "Currently: " + temp_f + " Degrees";
+  }
+  });
+});
+</script>
+
+<!-- Forecast -->
+
+<script>
+
+//Using Conditions
+jQuery(document).ready(function($) {
+
+	(function startWeather(){
+
+  $.ajax({
+  url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/conditions/q/MI/Ann_arbor.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+
+  var dayTemp = parsed_json['current_observation']['temp_f'];
+  var dayIcon = parsed_json['current_observation']['icon_url'];
+  var dayLoc = parsed_json['current_observation']['display_location']['full'];
+  document.getElementById("weatherLocation").innerHTML = dayLoc;
+  document.getElementById("weatherToday").innerHTML = dayTemp + '&deg';
+  document.getElementById("weatherIcon").src = dayIcon;
+  }
+  });
+  
+  
+  var t = setTimeout(startWeather, 360000);
+  })()
+  
+});
+</script>
+
+
+<script>
+
+var i;
+
+//Using Forecast
+jQuery(document).ready(function($) {
+
+  (function startForecast() {
+
+  $.ajax({
+  url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/forecast10day/q/MI/Ann_Arbor.json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+
+  //Today
+  /*
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit']
+  document.getElementById("weatherTodayHiLo").innerHTML = dayLow + ':' + dayHigh;
+	*/
+  //Day 1
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][1]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][1]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][1]['low']['fahrenheit']
+  document.getElementById("forecast1").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+
+  //Day 2
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][2]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][2]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][2]['low']['fahrenheit']
+  document.getElementById("forecast2").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+
+  //Day 3
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][3]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][3]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][3]['low']['fahrenheit']
+  document.getElementById("forecast3").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+
+  //Day 4
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][4]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][4]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][4]['low']['fahrenheit']
+  document.getElementById("forecast4").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+
+  //Day 5
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][5]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][5]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][5]['low']['fahrenheit']
+  document.getElementById("forecast5").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+
+  //Day 6
+  var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][6]['date']['weekday_short']
+  var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][6]['high']['fahrenheit']
+  var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][6]['low']['fahrenheit']
+  document.getElementById("forecast6").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  }
+  });
+  
+  
+   var t = setTimeout(startForecast, 360000);	
+  })();
+  
+});
+</script>
+
+<script>
+var months = ["January", "February", "March", "April", "May", "June", "July", "August",
+				"September", "October", "November", "December"];
+var days = ["Sunday", "Monday", "Tuesday", "Wednseday", "Thursday", "Friday", "Saturday"];
+
+jQuery(document).ready(function($) {
+
+(function startTime() {
+    var today = new Date();
+	var year = today.getFullYear();
+	var date = today.getDate();
+	var day = today.getDay();
+	var month = today.getMonth();
+	var meridiem;
+	
+    var hour = today.getHours();
+	if(hour < 12){meridiem = "a.m."}
+	else{meridiem = "p.m."}
+	
+	hour = hour%12;
+	if(hour == 0){hour = 12;}
+    var minute = today.getMinutes();
+    var s = today.getSeconds();
+    minute = checkTime(minute);
+    s = checkTime(s);
+	
+
+	document.getElementById('date').innerHTML =
+    days[day] + ", " + months[month] + " " + date + ", " + year;
+	
+    document.getElementById('time').innerHTML =
+    hour + ":" + minute + " " + meridiem;
+	
+    var t = setTimeout(startTime, 100);		
+})()
+
+
+});
+
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+
+<script>
+
+var state= 0;
+
+
+$(document).ready(function(){
+
+    $("#testButton").click(function(){
+	
+		if(state == 0){
+        	$("#time").fadeToggle();
+			$("#date").fadeToggle();
+			$("#weatherLocation").fadeToggle();
+			$("#weatherIcon").fadeToggle();
+			$("#weatherToday").fadeToggle();
+			$(".forecast").fadeToggle();
+			$("#news").fadeToggle();
+		
+			$("#timer").delay(1000).fadeToggle();
+			$("#taskName").delay(1000).fadeToggle();
+			state = 1;
+		}
+		
+		else{
+			$("#time").delay(1000).fadeToggle();
+			$("#date").delay(1000).fadeToggle();
+			$("#weatherLocation").delay(1000).fadeToggle();
+			$("#weatherIcon").delay(1000).fadeToggle();
+			$("#weatherToday").delay(1000).fadeToggle();
+			$(".forecast").delay(1000).fadeToggle();
+			$("#news").delay(1000).fadeToggle();
+		
+			$("#timer").fadeToggle();
+			$("#taskName").fadeToggle();
+			state = 0;
+		}
+		
+		
+		
+    });
+});
+</script>
+
+</head>
+
+<body bgcolor="black" >
+
+<div style="clear:both; text-align:center;">
+	<button id="testButton" onclick="setTimeout(completeTasks, 5000)" >Switch to Task Mode</button>
+</div>
+
+<div style="float:right;">	
+	<div id="weatherLocation" ></div>
+	<img id="weatherIcon" style="display: inline"></img><div id="weatherToday" style="display: inline" ></div>	
+	<div class="forecast" id="forecast1"></div>	
+	<div class="forecast" id="forecast2"></div>
+	<div class="forecast" id="forecast3"></div>
+	<div class="forecast" id="forecast4"></div>
+	<div class="forecast" id="forecast5"></div>
+	<div class="forecast" id="forecast6"></div>
+	
+	<div id="timer">TIMER</div>
+	
+</div>
+
+<div style="float:left;">
+	<div id="date"></div>
+	<div id="time"></div>
+	
+	<div id="taskName">TASK</div>
+	
+</div>
+
+
+<div id="news"> NEWS GOES HERE -- NEWS GOES HERE -- NEWS GOES HERE </div>
+
+</body>
+</html>
+
+<style>
+
+#date {
+	background-color:black;
+    color:white;
+    text-align:left;
+	font-family: "Helvetica", Sans-Serif;
+	font-size:30px;
+    padding: 20px 40px 0px;
+}
+
+
+
+#time {
+	background-color:black;
+    color:white;
+    text-align:left;
+	font-family:"Helvetica", Sans-Serif;
+	font-size:60px;
+    padding: 10px 40px 0px;
+}
+
+#weatherLocation{
+	background-color:black;
+	text-alight:right;
+	color:white;
+	text-align:right;
+	font-family: "Helvetica", Sans-Serif;
+	font-size:30px;
+    padding: 20px 40px 0px 5px;
+	
+}
+
+#weatherToday{
+	background-color:black;
+	color:white;
+    text-align:right;
+	font-family: "Helvetica", Sans-Serif;
+	font-size:60px;	
+	padding: 10px 40px 15px 0px;
+}
+
+#weatherIcon {
+	background-color:black;
+	align:bottom;
+	padding: 10px;
+}
+
+div.forecast {
+	background-color:black;
+	color:white;
+	text-align:right;
+	font-family: "Helvetica", Sans-Serif;
+	font-size:20px;
+	padding: 5px 40px;	
+}
+
+#testButton{
+	
+}
+
+#news{
+	background-color:black;
+	color: white;
+	position:absolute;
+	bottom:0px;
+	right:25%;
+	left:25%;
+	font-family: "Helvetica", Sans-Serif;
+	padding: 20px	
+}
+
+
+#timer{
+	background-color:black;
+	color:white;
+    text-align:right;
+	font-family: "Helvetica", Sans-Serif;
+	font-size:60px;	
+	padding: 10px 40px 15px 0px;
+	display: none;
+}
+
+#taskName{
+	background-color:black;
+    color:white;
+    text-align:left;
+	font-family:"Helvetica", Sans-Serif;
+	font-size:60px;
+    padding: 10px 40px 0px;
+	display: none;	
+}
+
+
+</style>
