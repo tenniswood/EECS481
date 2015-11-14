@@ -23,8 +23,8 @@ var retina = window.devicePixelRatio,
 // Local WindowAnimationTiming interface polyfill
 (function (w) {
   /**
-				* Fallback implementation.
-				*/
+        * Fallback implementation.
+        */
   var prev = _now();
   function fallback(fn) {
     var curr = _now();
@@ -35,8 +35,8 @@ var retina = window.devicePixelRatio,
   }
 
   /**
-				* Cancel.
-				*/
+        * Cancel.
+        */
   var cancel = w.cancelAnimationFrame
   || w.webkitCancelAnimationFrame
   || w.clearTimeout;
@@ -412,90 +412,114 @@ document.addEventListener("DOMContentLoaded", function() {
 <script>
 
 var run = true;
+var timeT;
+
+function runTimer(){
+
+var initialOffset = '440';
+var i = 1
+var interval = setInterval(function() {
+    $('.circle_animation').css('stroke-dashoffset', initialOffset-(i*(initialOffset/timeT)));
+    $('h2').text(i);
+    if (i == timeT+1) {
+
+        $('h2').text(0);
+        $('.circle_animation').css('stroke-dashoffset', initialOffset);
+        clearInterval(interval);
+    }
+    i++;  
+}, 1000);
+}
+
 
 function congratulateInTask(){
 
-	$("#taskName").fadeToggle();
-	$("#timer").fadeToggle();
-	$("#congratulations").delay(1000).fadeToggle();
-	$("#confetti").fadeToggle(2000);
+
+  $(".item").fadeToggle();
+  $("#taskName").fadeToggle();
+  //$("#timer").fadeToggle();
+  $("#congratulations").delay(1000).fadeToggle();
+  $("#confetti").fadeToggle(2000);
 }
 
 function congratulateOutTask(){
 
-	$("#taskName").delay(1000).fadeToggle();
-	$("#timer").delay(1000).fadeToggle();
-	$("#congratulations").fadeToggle();
-	$("#confetti").fadeToggle();
+  $(".item").delay(1000).fadeToggle();
+  $("#taskName").delay(1000).fadeToggle();
+  //$("#timer").delay(1000).fadeToggle();
+  $("#congratulations").fadeToggle();
+  $("#confetti").fadeToggle();
 }
 
 
 function timerReset(){
-	
-		document.getElementById("taskName").innerHTML = "TASK";
-		document.getElementById("timer").innerHTML = "TIME";
-	
-	
+  
+    document.getElementById("taskName").innerHTML = "TASK";
+    //document.getElementById("timer").innerHTML = "TIME";
+  
+  
 }
 
 
 function setTaskDelay(time, name){
-	
-	document.getElementById("timer").innerHTML = time;
-	document.getElementById("taskName").innerHTML = name;
-	
-	
+  timeT = time;
+  runTimer();
+  //document.getElementById("timer").innerHTML = time;
+  document.getElementById("taskName").innerHTML = name;
+  
+  
 }
 
 function setTask(time, name , delay){
-	
-	setTimeout(
-		function(){ 
-			setTaskDelay(time, name)
-						}, 
-				delay * 1000);
+  
+  setTimeout(
+    function(){ 
+      setTaskDelay(time, name)
+            }, 
+        delay * 1000);
 }
 
 function completeTasks(){
-	
-	if(run == true)
-	{
-		var totalDelay = 0;
-		var tasks = [];
-		tasks.push({ name: 'Brush Teeth', time:5 });
-		tasks.push({ name: 'Clean Hair', time:7 });
-		tasks.push({ name: 'Wash Face', time:6 });
-		
-		
-		setTask(tasks[0].time, tasks[0].name, totalDelay);
-	
-		totalDelay = totalDelay + tasks[0].time;
-		setTimeout(function(){congratulateInTask()}, totalDelay*1000);
-		totalDelay = totalDelay + 8;
-		setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
+  
+  if(run == true)
+  {
+    var totalDelay = 0;
+    var tasks = [];
+    tasks.push({ name: 'Brush Teeth', time:5 });
+    tasks.push({ name: 'Clean Hair', time:7 });
+    tasks.push({ name: 'Wash Face', time:6 });
+    
+    
+    setTask(tasks[0].time, tasks[0].name, totalDelay);
+  
+    totalDelay = totalDelay + tasks[0].time + 1;
+    setTimeout(function(){congratulateInTask()}, totalDelay*1000);
+    totalDelay = totalDelay + 8;
+    setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
 
-		for( i = 1; i<tasks.length; ++i){
-			setTask(tasks[i].time, tasks[i].name, totalDelay)
-			totalDelay = totalDelay + tasks[i].time;
-			setTimeout(function(){congratulateInTask()}, totalDelay*1000);
-			totalDelay = totalDelay + 8;
-			setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
-		}
-		
-		
-
-		setTask(" ", "All Done!", totalDelay);
-		setTask("TIMER", "TASK", (totalDelay+5));
-	
+    for( i = 1; i<tasks.length; ++i){
+      setTask(tasks[i].time, tasks[i].name, totalDelay)
+      totalDelay = totalDelay + tasks[i].time +1;
+      setTimeout(function(){congratulateInTask()}, totalDelay*1000);
+      totalDelay = totalDelay + 8;
+      setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
+    }
+    
+    
 
 
-		run = !run;
-	}
-	
-	else{
-		
-		run = !run;
-	}
+    setTask(" ", "All Done!", totalDelay);
+    setTask(0, "TASK", (totalDelay+5));
+  
+
+
+    run = !run;
+  }
+  
+  else{
+    
+    run = !run;
+  }
  
 }
 </script>
@@ -524,7 +548,7 @@ jQuery(document).ready(function($) {
 //Using Conditions
 jQuery(document).ready(function($) {
 
-	(function startWeather(){
+  (function startWeather(){
 
   $.ajax({
   url : "http://api.wunderground.com/api/116c67dcd28ab54f/geolookup/conditions/q/MI/Ann_arbor.json",
@@ -567,7 +591,7 @@ jQuery(document).ready(function($) {
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][0]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][0]['low']['fahrenheit']
   document.getElementById("weatherTodayHiLo").innerHTML = dayLow + ':' + dayHigh;
-	*/
+  */
   //Day 1
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][1]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][1]['high']['fahrenheit']
@@ -607,7 +631,7 @@ jQuery(document).ready(function($) {
   });
   
   
-   var t = setTimeout(startForecast, 360000);	
+   var t = setTimeout(startForecast, 360000); 
   })();
   
 });
@@ -615,39 +639,39 @@ jQuery(document).ready(function($) {
 
 <script>
 var months = ["January", "February", "March", "April", "May", "June", "July", "August",
-				"September", "October", "November", "December"];
+        "September", "October", "November", "December"];
 var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 jQuery(document).ready(function($) {
 
 (function startTime() {
     var today = new Date();
-	var year = today.getFullYear();
-	var date = today.getDate();
-	var day = today.getDay();
-	var month = today.getMonth();
-	var meridiem;
-	
+  var year = today.getFullYear();
+  var date = today.getDate();
+  var day = today.getDay();
+  var month = today.getMonth();
+  var meridiem;
+  
     var hour = today.getHours();
-	if(hour < 12){meridiem = "a.m."}
-	else{meridiem = "p.m."}
-	
-	hour = hour%12;
-	if(hour == 0){hour = 12;}
+  if(hour < 12){meridiem = "a.m."}
+  else{meridiem = "p.m."}
+  
+  hour = hour%12;
+  if(hour == 0){hour = 12;}
 
     var minute = today.getMinutes();
     var s = today.getSeconds();
     minute = checkTime(minute);
     s = checkTime(s);
-	
+  
 
-	document.getElementById('date').innerHTML =
+  document.getElementById('date').innerHTML =
     days[day] + ", " + months[month] + " " + date + ", " + year;
-	
+  
     document.getElementById('time').innerHTML =
     hour + ":" + minute + " " + meridiem;
-	
-    var t = setTimeout(startTime, 1000);		
+  
+    var t = setTimeout(startTime, 1000);    
 })()
 
 
@@ -668,43 +692,43 @@ var state= 0;
 $(document).ready(function(){
 
     $("#testButton").click(function(){
-	
-		if(state == 0){
-        	$("#time").fadeToggle();
-			$("#date").fadeToggle();
-			$("#weatherLocation").fadeToggle();
-			$("#weatherIcon").fadeToggle();
-			$("#weatherToday").fadeToggle();
-			$(".forecast").fadeToggle();
-			$("#news").fadeToggle();
-	
+  
+    if(state == 0){
+          $("#time").fadeToggle();
+      $("#date").fadeToggle();
+      $("#weatherLocation").fadeToggle();
+      $("#weatherIcon").fadeToggle();
+      $("#weatherToday").fadeToggle();
+      $(".forecast").fadeToggle();
+      $("#news").fadeToggle();
+  
 
+      $(".item").delay(1000).fadeToggle(); 
+      //$("#timer").delay(1000).fadeToggle();
+      $("#taskName").delay(1000).fadeToggle();
 
-			$("#timer").delay(1000).fadeToggle();
-			$("#taskName").delay(1000).fadeToggle();
+      state = 1;
+    }
+    
+    else{
+      $("#time").delay(1000).fadeToggle();
+      $("#date").delay(1000).fadeToggle();
+      $("#weatherLocation").delay(1000).fadeToggle();
+      $("#weatherIcon").delay(1000).fadeToggle();
+      $("#weatherToday").delay(1000).fadeToggle();
+      $(".forecast").delay(1000).fadeToggle();
+      $("#news").delay(1000).fadeToggle();
+      
 
-			state = 1;
-		}
-		
-		else{
-			$("#time").delay(1000).fadeToggle();
-			$("#date").delay(1000).fadeToggle();
-			$("#weatherLocation").delay(1000).fadeToggle();
-			$("#weatherIcon").delay(1000).fadeToggle();
-			$("#weatherToday").delay(1000).fadeToggle();
-			$(".forecast").delay(1000).fadeToggle();
-			$("#news").delay(1000).fadeToggle();
-				
+      $(".item").fadeToggle(); 
+      //$("#timer").fadeToggle();
+      $("#taskName").fadeToggle();
 
-
-			$("#timer").fadeToggle();
-			$("#taskName").fadeToggle();
-
-			state = 0;
-		}
-		
-		
-		
+      state = 0;
+    }
+    
+    
+    
     });
 });
 </script>
@@ -715,7 +739,7 @@ $(document).ready(function(){
 
 
 <div style="clear:both; text-align:center;">
-	<button id="testButton" onclick="setTimeout(completeTasks, 4000)" >Switch to Task Mode</button>
+  <button id="testButton" onclick="setTimeout(completeTasks, 4000)" >Switch to Task Mode</button>
 </div>
 
 
@@ -723,26 +747,34 @@ $(document).ready(function(){
 
 
 
-<div style="float:right;">	
-	<div id="weatherLocation" ></div>
-	<img id="weatherIcon" style="display: inline"></img><div id="weatherToday" style="display: inline" ></div>	
-	<div class="forecast" id="forecast1"></div>	
-	<div class="forecast" id="forecast2"></div>
-	<div class="forecast" id="forecast3"></div>
-	<div class="forecast" id="forecast4"></div>
-	<div class="forecast" id="forecast5"></div>
-	<div class="forecast" id="forecast6"></div>
-	
-	<div id="timer">TIMER</div>
-	
+<div style="float:right;">  
+  <div id="weatherLocation" ></div>
+  <img id="weatherIcon" style="display: inline"></img><div id="weatherToday" style="display: inline" ></div>  
+  <div class="forecast" id="forecast1"></div> 
+  <div class="forecast" id="forecast2"></div>
+  <div class="forecast" id="forecast3"></div>
+  <div class="forecast" id="forecast4"></div>
+  <div class="forecast" id="forecast5"></div>
+  <div class="forecast" id="forecast6"></div>
+
+  <div class="item">
+    <h2>0</h2>
+    <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <title>Layer 1</title>
+      <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width=11 stroke="white" fill="none"/>
+     </g>
+    </svg>
+</div>
+  
 </div>
 
 <div style="float:left;">
-	<div id="date"></div>
-	<div id="time"></div>
-	
-	<div id="taskName">TASK</div>
-	
+  <div id="date"></div>
+  <div id="time"></div>
+  
+  <div id="taskName">TASK</div>
+  
 </div>
 
 
@@ -756,100 +788,135 @@ $(document).ready(function(){
 <style>
 
 #date {
-	background-color:black;
+  background-color:black;
     color:white;
     text-align:left;
-	font-family: "Helvetica", Sans-Serif;
-	font-size:30px;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:30px;
     padding: 20px 40px 0px;
 }
 
 
 
 #time {
-	background-color:black;
+  background-color:black;
     color:white;
     text-align:left;
-	font-family:"Helvetica", Sans-Serif;
-	font-size:60px;
+  font-family:"Helvetica", Sans-Serif;
+  font-size:60px;
     padding: 10px 40px 0px;
 }
 
 #weatherLocation{
-	background-color:black;
-	color:white;
-	text-align:right;
-	font-family: "Helvetica", Sans-Serif;
-	font-size:30px;
+  background-color:black;
+  color:white;
+  text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:30px;
     padding: 20px 40px 0px 5px;
-	
+  
 }
 
 #weatherToday{
-	background-color:black;
-	color:white;
+  background-color:black;
+  color:white;
     text-align:right;
-	font-family: "Helvetica", Sans-Serif;
-	font-size:60px;	
-	padding: 10px 40px 15px 0px;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:60px; 
+  padding: 10px 40px 15px 0px;
 }
 
 #weatherIcon {
-	background-color:black;
-	padding: 10px;
+  background-color:black;
+  padding: 10px;
 }
 
 div.forecast {
-	background-color:black;
-	color:white;
-	text-align:right;
-	font-family: "Helvetica", Sans-Serif;
-	font-size:20px;
-	padding: 5px 40px;	
+  background-color:black;
+  color:white;
+  text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:20px;
+  padding: 5px 40px;  
 }
 
 #testButton{
-	
+  
 }
 
 #news{
-	background-color:black;
-	color: white;
-	position:absolute;
-	bottom:0px;
-	right:25%;
-	left:25%;
-	font-family: "Helvetica", Sans-Serif;
-	padding: 20px	
+  background-color:black;
+  color: white;
+  position:absolute;
+  bottom:0px;
+  right:25%;
+  left:25%;
+  font-family: "Helvetica", Sans-Serif;
+  padding: 20px 
 }
 
 
 #timer{
-	background-color:black;
-	color:white;
+  background-color:black;
+  color:white;
     text-align:right;
-	font-family: "Helvetica", Sans-Serif;
-	font-size:60px;	
-	padding: 10px 40px 15px 0px;
-	display: none;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:60px; 
+  padding: 10px 40px 15px 0px;
+  display: none;
 }
 
 #taskName{
-	background-color:black;
-    color:white;
-    text-align:left;
-	font-family:"Helvetica", Sans-Serif;
-	font-size:60px;
-    padding: 10px 40px 0px;
-	display: none;	
+  background-color:black;
+  color:white;
+  text-align:left;
+  font-family:"Helvetica", Sans-Serif;
+  font-size:60px;
+  padding: 40px 40px 0px;
+  display: none;  
 }
 
 #congratulations{
     color:white;
-	font-family:"Helvetica", Sans-Serif;
-	text-align:center;
-	font-size:240px;
-	display: none;	
+  font-family:"Helvetica", Sans-Serif;
+  text-align:center;
+  font-size:100px;
+  display: none;  
+  text-shadow:
+    -1px -1px 0 #FFC0CB,
+    1px -1px 0 #FFC0CB,
+    -1px 1px 0 #FFC0CB,
+    1px 1px 0 #FFC0CB;
+}
+
+
+.item {
+    padding: 10px 40px 0px;
+    position: relative;
+    float: left;
+    display: none;
+}
+
+.item h2 {
+    color:white;
+    font-family: "Helvetica", Sans-Serif;
+    position: absolute;
+    font-size: 60px;
+    height: 60px;
+    text-align:center;
+    line-height: 100%;
+    width: 66.5%;
+}
+
+svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.circle_animation {
+  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+  stroke-dashoffset: 440;
+  transition: all 1s linear;
 }
 
 
