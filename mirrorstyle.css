@@ -1,0 +1,152 @@
+body {
+  background-color: black;
+}
+
+#date {
+  background-color:black;
+    color:white;
+    text-align:left;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:30px;
+    padding: 20px 40px 0px;
+}
+
+#time {
+  background-color:black;
+    color:white;
+    text-align:left;
+  font-family:"Helvetica", Sans-Serif;
+  font-size:60px;
+    padding: 10px 40px 0px;
+}
+
+#weatherLocation{
+  background-color:black;
+  color:white;
+  text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:30px;
+    padding: 20px 40px 0px 5px;
+  
+}
+
+#weatherToday{
+  background-color:black;
+  color:white;
+    text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:60px; 
+  padding: 10px 40px 15px 0px;
+}
+
+#weatherIcon {
+  background-color:black;
+  padding: 10px;
+}
+
+div.forecast {
+  background-color:black;
+  color:white;
+  text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:20px;
+  padding: 5px 40px;  
+}
+
+#testButton{
+  
+}
+
+#timer{
+  background-color:black;
+  color:white;
+    text-align:right;
+  font-family: "Helvetica", Sans-Serif;
+  font-size:60px; 
+  padding: 10px 40px 15px 0px;
+  display: none;
+}
+
+#taskName{
+  background-color:black;
+  color:white;
+  text-align:left;
+  font-family:"Helvetica", Sans-Serif;
+  font-size:60px;
+  padding: 40px 40px 0px;
+  display: none;  
+}
+
+#congratulations{
+    color:white;
+  font-family:"Helvetica", Sans-Serif;
+  text-align:center;
+  font-size:100px;
+  display: none;  
+  text-shadow:
+    -1px -1px 0 #FFC0CB,
+    1px -1px 0 #FFC0CB,
+    -1px 1px 0 #FFC0CB,
+    1px 1px 0 #FFC0CB;
+}
+
+#alldone{
+    color:white;
+  font-family:"Helvetica", Sans-Serif;
+  text-align:center;
+  font-size:100px;
+  display: none;  
+  text-shadow:
+    -1px -1px 0 #FFC0CB,
+    1px -1px 0 #FFC0CB,
+    -1px 1px 0 #FFC0CB,
+    1px 1px 0 #FFC0CB;
+}
+
+.item {
+    padding: 10px 40px 0px;
+    position: relative;
+    float: left;
+    display: none;
+}
+
+.item h2 {
+    color:white;
+    font-family: "Helvetica", Sans-Serif;
+    position: absolute;
+    font-size: 60px;
+    height: 60px;
+    text-align:center;
+    line-height: 100%;
+    width: 66.5%;
+}
+
+svg {
+   -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.circle_animation {
+  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
+  stroke-dashoffset: 440;
+  transition: all 1s linear;
+}
+
+
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  height: 100%;
+  width: 100%;
+}
+#confetti{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
