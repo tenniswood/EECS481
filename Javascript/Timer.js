@@ -50,10 +50,3 @@ function radialTimer() {
 		}, 1000);
 	}
 }
-
-var Timer;
-
-$(document).ready(function() {
-	Timer = new radialTimer();
-	Timer.init("timer", 10);
-});

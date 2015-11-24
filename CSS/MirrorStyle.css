@@ -27,7 +27,6 @@ body {
   font-family: "Helvetica", Sans-Serif;
   font-size:30px;
     padding: 20px 40px 0px 5px;
-  
 }
 
 #weatherToday{
@@ -51,10 +50,6 @@ div.forecast {
   font-family: "Helvetica", Sans-Serif;
   font-size:20px;
   padding: 5px 40px;  
-}
-
-#testButton{
-  
 }
 
 #timer{
@@ -90,6 +85,18 @@ div.forecast {
     1px 1px 0 #FFC0CB;
 }
 
+#instructions{
+  background-color:black;
+  color:white;
+  position: absolute;
+  top: 80%;
+  left: 35%;
+  font-family:"Helvetica", Sans-Serif;
+  font-size:20px;
+  padding: 40px 40px 0px;
+  display: none;  
+}
+
 #alldone{
     color:white;
   font-family:"Helvetica", Sans-Serif;
@@ -103,38 +110,6 @@ div.forecast {
     1px 1px 0 #FFC0CB;
 }
 
-.item {
-    padding: 10px 40px 0px;
-    position: relative;
-    float: left;
-    display: none;
-}
-
-.item h2 {
-    color:white;
-    font-family: "Helvetica", Sans-Serif;
-    position: absolute;
-    font-size: 60px;
-    height: 60px;
-    text-align:center;
-    line-height: 100%;
-    width: 66.5%;
-}
-
-svg {
-   -webkit-transform: rotate(-90deg);
-    transform: rotate(-90deg);
-}
-
-.circle_animation {
-  stroke-dasharray: 440; /* this value is the pixel circumference of the circle */
-  stroke-dashoffset: 440;
-  transition: all 1s linear;
-}
-
-
-
-
 html, body {
   margin: 0;
   padding: 0;
@@ -142,6 +117,7 @@ html, body {
   height: 100%;
   width: 100%;
 }
+
 #confetti{
   position: absolute;
   left: 0;
@@ -149,4 +125,56 @@ html, body {
   height: 100%;
   width: 100%;
   display: none;
+}
+
+.radialtimer {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 20%;
+  left: 89%;
+  margin: -100px 0 0 -100px;
+}
+.radialtimer .n {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: black;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 200px;
+  font-family: "Helvetica";
+  font-size: 70px;
+  color: white;
+}
+.radialtimer .slice {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  clip: rect(0px, 200px, 200px, 100px);
+}
+
+.radialtimer .slice.nc {
+  clip: rect(auto, auto, auto, auto);
+}
+
+.radialtimer .slice .q {
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  border: 16px black solid;
+  border-radius: 50%;
+  clip: rect(0px, 100px, 100px, 0px);
+  z-index: 2;
+}
+
+.radialtimer .slice .pie {
+  border: 15px white solid;
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  clip: rect(0px, 100px, 200px, 0px);
+  border-radius: 50%;
+  transition: all 1s linear;
+  z-index: 1;
 }

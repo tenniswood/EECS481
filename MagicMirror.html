@@ -2,30 +2,33 @@
 <html>
   <head>
 
+    <title>Magic Mirror!</title>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="mirrorstyle.css">
+    <link rel="stylesheet" href="CSS/MirrorStyle.css">
 
-    <!--><script="Confetti.js"></script><!-->
+    <!--><script="Javascript/Confetti.js"></script><!-->
 
-    <script src="Tasks.js"></script>
+    <script src="Javascript/Tasks.js"></script>
 
-    <script src="Conditions.js"></script>
+    <script src="Javascript/Conditions.js"></script>
 
-    <script src="Forecast.js"></script>
+    <script src="Javascript/Forecast.js"></script>
 
-    <script src="Date.js"></script>
+    <script src="Javascript/Date.js"></script>
+
+    <script src="Javascript/Timer.js"></script>
+
+    <script src="Javascript/Instructions.js"></script>
 
   </head>
 
   <body>
 
-    <div style="clear:both; text-align:center;">
-      <button id="testButton" onkeypress="completeTasks()" >Begin Tasks</button>
-    </div>
+    <div id="instructions">Press Space Bar to Begin Tasks</div>
 
     <div id="congratulations">GOOD JOB!</div>
-
     <div id="alldone">ALL DONE!</div>
 
     <div style="float:right;">  
@@ -37,22 +40,12 @@
       <div class="forecast" id="forecast4"></div>
       <div class="forecast" id="forecast5"></div>
       <div class="forecast" id="forecast6"></div>
-
-      <div class="item">
-        <h2>0</h2>
-        <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
-          <g>
-            <title>Layer 1</title>
-            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width=11 stroke="white" fill="none"/>
-          </g>
-        </svg>
-      </div>
+      <div class='radialtimer' id='timer'></div>
     </div>
 
     <div style="float:left;">
       <div id="date"></div>
       <div id="time"></div>
-  
       <div id="taskName">TASK</div>
     </div>
 
