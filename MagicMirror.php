@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="CSS/MirrorStyle.css">
 
-    <!--><script="Javascript/Confetti.js"></script><!-->
+    <script src="Javascript/Confetti.js"></script>
 
     <script src="Javascript/Tasks.js"></script>
 
@@ -26,9 +26,11 @@
 
   <body>
 
+    <canvas height='1' id='confetti' width='1'></canvas>
+
     <div id="instructions">Press Space Bar to Begin Tasks</div>
 
-    <div id="congratulations">GOOD JOB!</div>
+    <div id="congratulations"></div>
     <div id="alldone">ALL DONE!</div>
 
     <div style="float:right;">  
@@ -48,8 +50,6 @@
       <div id="time"></div>
       <div id="taskName">TASK</div>
     </div>
-
-    <canvas height='1' id='confetti' width='1'></canvas>
 
   </body>
 </html>

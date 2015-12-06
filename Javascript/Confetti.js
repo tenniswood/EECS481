@@ -1,24 +1,27 @@
 var retina = window.devicePixelRatio,
 
-    // Math shorthands
-    PI = Math.PI,
-    sqrt = Math.sqrt,
-    round = Math.round,
-    random = Math.random,
-    cos = Math.cos,
-    sin = Math.sin,
+  // Math shorthands
+  PI = Math.PI,
+  sqrt = Math.sqrt,
+  round = Math.round,
+  random = Math.random,
+  cos = Math.cos,
+  sin = Math.sin,
 
-    // Local WindowAnimationTiming interface
-    rAF = window.requestAnimationFrame,
-    cAF = window.cancelAnimationFrame || window.cancelRequestAnimationFrame,
-    _now = Date.now || function () {return new Date().getTime();};
+  // Local WindowAnimationTiming interface
+  rAF = window.requestAnimationFrame,
+  cAF = window.cancelAnimationFrame || window.cancelRequestAnimationFrame,
+  _now = Date.now || function() {
+    return new Date().getTime();
+  };
 
 // Local WindowAnimationTiming interface polyfill
-(function (w) {
+(function(w) {
   /**
-        * Fallback implementation.
-        */
+   * Fallback implementation.
+   */
   var prev = _now();
+
   function fallback(fn) {
     var curr = _now();
     var ms = Math.max(0, 16 - (curr - prev));
@@ -28,37 +31,33 @@ var retina = window.devicePixelRatio,
   }
 
   /**
-        * Cancel.
-        */
-  var cancel = w.cancelAnimationFrame
-  || w.webkitCancelAnimationFrame
-  || w.clearTimeout;
+   * Cancel.
+   */
+  var cancel = w.cancelAnimationFrame || w.webkitCancelAnimationFrame || w.clearTimeout;
 
-  rAF = w.requestAnimationFrame
-  || w.webkitRequestAnimationFrame
-  || fallback;
+  rAF = w.requestAnimationFrame || w.webkitRequestAnimationFrame || fallback;
 
-  cAF = function(id){
+  cAF = function(id) {
     cancel.call(w, id);
   };
 }(window));
 
 document.addEventListener("DOMContentLoaded", function() {
-  var speed = 12,
-      duration = (1.0 / speed),
-      confettiRibbonCount = 11,
-      ribbonPaperCount = 30,
-      ribbonPaperDist = 8.0,
-      ribbonPaperThick = 8.0,
-      confettiPaperCount = 95,
-      DEG_TO_RAD = PI / 180,
-      RAD_TO_DEG = 180 / PI,
-      colors = [
-        ["#df0049", "#660671"],
-        ["#00e857", "#005291"],
-        ["#2bebbc", "#05798a"],
-        ["#ffd200", "#b06c00"]
-      ];
+  var speed = 25,
+    duration = (1.0 / speed),
+    confettiRibbonCount = 11,
+    ribbonPaperCount = 30,
+    ribbonPaperDist = 8.0,
+    ribbonPaperThick = 8.0,
+    confettiPaperCount = 95,
+    DEG_TO_RAD = PI / 180,
+    RAD_TO_DEG = 180 / PI,
+    colors = [
+      ["#df0049", "#660671"],
+      ["#00e857", "#005291"],
+      ["#2bebbc", "#05798a"],
+      ["#ffd200", "#b06c00"]
+    ];
 
   function Vector2(_x, _y) {
     this.x = _x, this.y = _y;
@@ -388,7 +387,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   var confetti = new confetti.Context('confetti');
   confetti.start();
-  window.addEventListener('resize', function(event){
+  window.addEventListener('resize', function(event) {
     confetti.resize();
   });
 });

@@ -8,17 +8,20 @@ $(window).keypress(function (e){
 })
 
 function congratulateInTask(){
+  var messages = ["GOOD JOB!", "GREAT WORK!", "YOU ROCK!", "YOU ROCK!"];
+  document.getElementById('congratulations').innerHTML = messages[Math.floor((Math.random() * (messages.length - 1)))];
+
   $(".radialtimer").fadeToggle();
   $("#taskName").fadeToggle();
   $("#congratulations").delay(1000).fadeToggle();
-  //$("#confetti").fadeToggle(2000);
+  $("#confetti").delay(1000).fadeToggle();
 }
 
 function congratulateOutTask(){
   $(".radialtimer").delay(1000).fadeToggle();
   $("#taskName").delay(1000).fadeToggle();
   $("#congratulations").fadeToggle();
-  //$("#confetti").fadeToggle();
+  $("#confetti").fadeToggle();
 }
 
 function setTaskDelay(time, name){
@@ -36,9 +39,22 @@ function setTask(time, name , delay){
 }
 
 function completeTasks(){
-  
   var totalDelay = 0;
   var tasks = [];
+
+  /*function reqListener () {
+    console.log(this.responseText);
+  }
+  var oReq = new XMLHttpRequest();
+  oReq.onload = function() {
+    var JSON = this.responseText;
+    var taskname = JSON.taskname;
+    var taskduration = JSON.taskduration;
+    tasks.push({name: taskname, time: taskduration});
+  };
+  oReq.open("get", "PHP/getData.php", true);
+  oReq.send();*/
+
   tasks.push({ name: 'Brush Your Teeth!', time:5 });
   tasks.push({ name: 'Comb Your Hair!', time:7 });
   tasks.push({ name: 'Wash Your Face!', time:6 });
@@ -62,7 +78,7 @@ function completeTasks(){
 
   totalDelay = totalDelay + tasks[0].time + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
-  totalDelay = totalDelay + 4;
+  totalDelay = totalDelay + 6;
   setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
 
   //Intermediate Tasks
@@ -70,7 +86,7 @@ function completeTasks(){
     setTask(tasks[i].time, tasks[i].name, totalDelay)
     totalDelay = totalDelay + tasks[i].time + 2;
     setTimeout(function(){congratulateInTask()}, totalDelay*1000);
-    totalDelay = totalDelay + 4;
+    totalDelay = totalDelay + 6;
     setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
   }
 
@@ -78,7 +94,7 @@ function completeTasks(){
   setTask(tasks[tasks.length - 1].time, tasks[tasks.length - 1].name, totalDelay)
   totalDelay = totalDelay + tasks[i].time + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
-  totalDelay = totalDelay + 4;
+  totalDelay = totalDelay + 6;
     
   setTimeout(function() {
     $("#congratulations").fadeToggle();
@@ -88,6 +104,7 @@ function completeTasks(){
 
   setTimeout(function() {
     $("#alldone").fadeToggle();
+    $("#confetti").fadeToggle();
     $("#instructions").delay(1000).fadeToggle();
     $("#time").delay(1000).fadeToggle();
     $("#date").delay(1000).fadeToggle();

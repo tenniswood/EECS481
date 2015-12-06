@@ -8,7 +8,7 @@ body {
     text-align:left;
   font-family: "Helvetica", Sans-Serif;
   font-size:30px;
-    padding: 20px 40px 0px;
+    padding: 40px 40px 0px 20px;
 }
 
 #time {
@@ -17,7 +17,7 @@ body {
     text-align:left;
   font-family:"Helvetica", Sans-Serif;
   font-size:60px;
-    padding: 10px 40px 0px;
+    padding: 10px 40px 0px 20px;
 }
 
 #weatherLocation{
@@ -26,7 +26,7 @@ body {
   text-align:right;
   font-family: "Helvetica", Sans-Serif;
   font-size:30px;
-    padding: 20px 40px 0px 5px;
+    padding: 40px 20px 0px 5px;
 }
 
 #weatherToday{
@@ -35,7 +35,7 @@ body {
     text-align:right;
   font-family: "Helvetica", Sans-Serif;
   font-size:60px; 
-  padding: 10px 40px 15px 0px;
+  padding: 10px 20px 15px 0px;
 }
 
 #weatherIcon {
@@ -49,7 +49,7 @@ div.forecast {
   text-align:right;
   font-family: "Helvetica", Sans-Serif;
   font-size:20px;
-  padding: 5px 40px;  
+  padding: 5px 20px;  
 }
 
 #timer{
@@ -58,7 +58,7 @@ div.forecast {
     text-align:right;
   font-family: "Helvetica", Sans-Serif;
   font-size:60px; 
-  padding: 10px 40px 15px 0px;
+  padding: 0px 0px 15px 0px;
   display: none;
 }
 
@@ -67,8 +67,8 @@ div.forecast {
   color:white;
   text-align:left;
   font-family:"Helvetica", Sans-Serif;
-  font-size:60px;
-  padding: 40px 40px 0px;
+  font-size:55px;
+  padding: 70px 0px 0px 20px;
   display: none;  
 }
 
@@ -77,12 +77,8 @@ div.forecast {
   font-family:"Helvetica", Sans-Serif;
   text-align:center;
   font-size:100px;
+  padding: 60px;
   display: none;  
-  text-shadow:
-    -1px -1px 0 #FFC0CB,
-    1px -1px 0 #FFC0CB,
-    -1px 1px 0 #FFC0CB,
-    1px 1px 0 #FFC0CB;
 }
 
 #instructions{
@@ -102,12 +98,8 @@ div.forecast {
   font-family:"Helvetica", Sans-Serif;
   text-align:center;
   font-size:100px;
+  padding: 60px;
   display: none;  
-  text-shadow:
-    -1px -1px 0 #FFC0CB,
-    1px -1px 0 #FFC0CB,
-    -1px 1px 0 #FFC0CB,
-    1px 1px 0 #FFC0CB;
 }
 
 html, body {
@@ -124,34 +116,34 @@ html, body {
   top: 0;
   height: 100%;
   width: 100%;
-  display: none;
+  display:none;
 }
 
 .radialtimer {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   position: absolute;
-  top: 20%;
-  left: 89%;
-  margin: -100px 0 0 -100px;
+  top: 9%;
+  left: 85%;
+  margin: -75px 0 0 -75px;
 }
 .radialtimer .n {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   background: black;
   border-radius: 50%;
   text-align: center;
-  line-height: 200px;
+  line-height: 150px;
   font-family: "Helvetica";
-  font-size: 70px;
+  font-size: 55px;
   color: white;
 }
 .radialtimer .slice {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  clip: rect(0px, 200px, 200px, 100px);
+  width: 150px;
+  height: 150px;
+  clip: rect(0px, 150px, 150px, 75px);
 }
 
 .radialtimer .slice.nc {
@@ -160,20 +152,20 @@ html, body {
 
 .radialtimer .slice .q {
   position: absolute;
-  width: 170px;
-  height: 170px;
+  width: 120px;
+  height: 120px;
   border: 16px black solid;
   border-radius: 50%;
-  clip: rect(0px, 100px, 100px, 0px);
+  clip: rect(0px, 75px, 75px, 0px);
   z-index: 2;
 }
 
 .radialtimer .slice .pie {
   border: 15px white solid;
   position: absolute;
-  width: 170px;
-  height: 170px;
-  clip: rect(0px, 100px, 200px, 0px);
+  width: 120px;
+  height: 120px;
+  clip: rect(0px, 75px, 150px, 0px);
   border-radius: 50%;
   transition: all 1s linear;
   z-index: 1;

@@ -20,37 +20,37 @@ jQuery(document).ready(function($) {
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][1]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][1]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][1]['low']['fahrenheit']
-  document.getElementById("forecast1").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast1").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
 
   //Day 2
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][2]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][2]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][2]['low']['fahrenheit']
-  document.getElementById("forecast2").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast2").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
 
   //Day 3
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][3]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][3]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][3]['low']['fahrenheit']
-  document.getElementById("forecast3").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast3").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
 
   //Day 4
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][4]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][4]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][4]['low']['fahrenheit']
-  document.getElementById("forecast4").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast4").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
 
   //Day 5
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][5]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][5]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][5]['low']['fahrenheit']
-  document.getElementById("forecast5").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast5").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
 
   //Day 6
   var dayDay = parsed_json['forecast']['simpleforecast']['forecastday'][6]['date']['weekday_short']
   var dayHigh = parsed_json['forecast']['simpleforecast']['forecastday'][6]['high']['fahrenheit']
   var dayLow = parsed_json['forecast']['simpleforecast']['forecastday'][6]['low']['fahrenheit']
-  document.getElementById("forecast6").innerHTML = dayDay + "    " + dayHigh + "  " + dayLow;
+  document.getElementById("forecast6").innerHTML = dayDay + ":    " + '&nbsp' + dayLow + '&deg' + "  " + '&nbsp' + dayHigh + '&deg';
   }
   });
   
