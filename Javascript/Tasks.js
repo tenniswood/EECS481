@@ -40,27 +40,15 @@ function setTask(time, name , delay){
 
 function completeTasks(){
   var totalDelay = 0;
+
   var tasks = [];
 
-  /*function reqListener () {
-    console.log(this.responseText);
-  }
-  var oReq = new XMLHttpRequest();
-  oReq.onload = function() {
-    var JSON = this.responseText;
-    var taskname = JSON.taskname;
-    var taskduration = JSON.taskduration;
-    tasks.push({name: taskname, time: taskduration});
-  };
-  oReq.open("get", "PHP/getData.php", true);
-  oReq.send();*/
-
-  tasks.push({ name: 'Brush Your Teeth!', time:5 });
-  tasks.push({ name: 'Comb Your Hair!', time:7 });
-  tasks.push({ name: 'Wash Your Face!', time:6 });
+  tasks.push({ task_name: 'Brush Your Teeth!', task_duration:5 });
+  tasks.push({ task_name: 'Comb Your Hair!', task_duration:7 });
+  tasks.push({ task_name: 'Wash Your Face!', task_duration:6 });
     
   //Initial Task
-  setTask(tasks[0].time, tasks[0].name, totalDelay);
+  setTask(tasks[0].task_duration, tasks[0].task_name, totalDelay);
 
   setTimeout(function() {
     $("#instructions").fadeToggle();
@@ -76,23 +64,23 @@ function completeTasks(){
 
   totalDelay = totalDelay + 1;
 
-  totalDelay = totalDelay + tasks[0].time + 2;
+  totalDelay = totalDelay + tasks[0].task_duration + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
   totalDelay = totalDelay + 6;
   setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
 
   //Intermediate Tasks
   for( i = 1; i<tasks.length - 1; ++i){
-    setTask(tasks[i].time, tasks[i].name, totalDelay)
-    totalDelay = totalDelay + tasks[i].time + 2;
+    setTask(tasks[i].task_duration, tasks[i].task_name, totalDelay)
+    totalDelay = totalDelay + tasks[i].task_duration + 2;
     setTimeout(function(){congratulateInTask()}, totalDelay*1000);
     totalDelay = totalDelay + 6;
     setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
   }
 
   //Final Task
-  setTask(tasks[tasks.length - 1].time, tasks[tasks.length - 1].name, totalDelay)
-  totalDelay = totalDelay + tasks[i].time + 2;
+  setTask(tasks[tasks.length - 1].task_duration, tasks[tasks.length - 1].task_name, totalDelay)
+  totalDelay = totalDelay + tasks[i].task_duration + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
   totalDelay = totalDelay + 6;
     

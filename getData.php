@@ -3,8 +3,11 @@
   	$db_select = mysql_select_db("magic_mirror", $db);
 	$result = mysql_query("SELECT * FROM tasks", $db);
 	while ($row = mysql_fetch_array($result)) {
-		$arr = array('taskname' => $row[0], 'taskduration' => $row[1]);
-		echo json_encode($arr, JSON_NUMERIC_CHECK);
+		$emparray[] = $row;
 	}
 	mysql_close($db);
 ?>
+<script type="text/javascript">
+	var tasks = <?php echo json_encode($emparray); ?>;
+	alert(tasks[0].task_name);
+</script>
