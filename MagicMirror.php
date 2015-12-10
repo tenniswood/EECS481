@@ -8,7 +8,19 @@
 
     <link rel="stylesheet" href="CSS/MirrorStyle.css">
 
+    <?php
+      $db = mysql_connect("localhost","root");
+      $db_select = mysql_select_db("magic_mirror", $db);
+      $result = mysql_query("SELECT * FROM tasks", $db);
+      while ($row = mysql_fetch_array($result)) {
+        $emparray[] = $row;
+      }
+      mysql_close($db);
+    ?>
+
     <script src="Javascript/Confetti.js"></script>
+
+    <script type="text/javascript">var tasks = <?php echo json_encode($emparray); ?>;</script>
 
     <script src="Javascript/Tasks.js"></script>
 

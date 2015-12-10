@@ -40,15 +40,9 @@ function setTask(time, name , delay){
 
 function completeTasks(){
   var totalDelay = 0;
-
-  var tasks = [];
-
-  tasks.push({ task_name: 'Brush Your Teeth!', task_duration:5 });
-  tasks.push({ task_name: 'Comb Your Hair!', task_duration:7 });
-  tasks.push({ task_name: 'Wash Your Face!', task_duration:6 });
     
   //Initial Task
-  setTask(tasks[0].task_duration, tasks[0].task_name, totalDelay);
+  setTask(parseInt(tasks[0].task_duration), tasks[0].task_name, totalDelay);
 
   setTimeout(function() {
     $("#instructions").fadeToggle();
@@ -64,23 +58,23 @@ function completeTasks(){
 
   totalDelay = totalDelay + 1;
 
-  totalDelay = totalDelay + tasks[0].task_duration + 2;
+  totalDelay = totalDelay + parseInt(tasks[0].task_duration) + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
   totalDelay = totalDelay + 6;
   setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
 
   //Intermediate Tasks
   for( i = 1; i<tasks.length - 1; ++i){
-    setTask(tasks[i].task_duration, tasks[i].task_name, totalDelay)
-    totalDelay = totalDelay + tasks[i].task_duration + 2;
+    setTask(parseInt(tasks[i].task_duration), tasks[i].task_name, totalDelay)
+    totalDelay = totalDelay + parseInt(tasks[i].task_duration) + 2;
     setTimeout(function(){congratulateInTask()}, totalDelay*1000);
     totalDelay = totalDelay + 6;
     setTimeout(function(){congratulateOutTask()}, totalDelay*1000);
   }
 
   //Final Task
-  setTask(tasks[tasks.length - 1].task_duration, tasks[tasks.length - 1].task_name, totalDelay)
-  totalDelay = totalDelay + tasks[i].task_duration + 2;
+  setTask(parseInt(tasks[tasks.length - 1].task_duration), tasks[tasks.length - 1].task_name, totalDelay)
+  totalDelay = totalDelay + parseInt(tasks[i].task_duration) + 2;
   setTimeout(function(){congratulateInTask()}, totalDelay*1000);
   totalDelay = totalDelay + 6;
     
