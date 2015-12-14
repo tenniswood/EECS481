@@ -81,18 +81,6 @@ div.forecast {
   display: none;  
 }
 
-#instructions{
-  background-color:black;
-  color:white;
-  position: absolute;
-  top: 80%;
-  left: 35%;
-  font-family:"Helvetica", Sans-Serif;
-  font-size:20px;
-  padding: 40px 40px 0px;
-  display: none;  
-}
-
 #alldone{
     color:white;
   font-family:"Helvetica", Sans-Serif;

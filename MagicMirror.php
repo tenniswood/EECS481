@@ -40,8 +40,6 @@
 
     <canvas height='1' id='confetti' width='1'></canvas>
 
-    <div id="instructions">Press Space Bar to Begin Tasks</div>
-
     <div id="congratulations"></div>
     <div id="alldone">ALL DONE!</div>
 
