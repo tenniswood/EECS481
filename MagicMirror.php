@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="CSS/MirrorStyle.css">
 
     <?php
-      $db = mysql_connect("localhost","root");
+      $db = mysql_connect("localhost","root", "eecs481");
       $db_select = mysql_select_db("magic_mirror", $db);
       $result = mysql_query("SELECT * FROM tasks", $db);
       while ($row = mysql_fetch_array($result)) {

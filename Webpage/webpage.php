@@ -7,8 +7,8 @@
   <body>
   <?php
     $db = mysql_connect("localhost","root");
-    $db_select = mysql_select_db("magic_mirror", $db);
-    $result = mysql_query("SELECT * FROM tasks", $db);
+    $db_select = mysql_select_db("magic_mirror");
+    $result = mysql_query("SELECT * FROM tasks");
     echo "<table>";
     echo "<tr><th>Task Name</th><th>Task Duration (sec)</th></tr>";
 
@@ -24,14 +24,18 @@
     ?>
 
     <h2>Add a New Task</h2>
-    <form action="formhandle.php" method="post">
+    <form method="post" action="">
       Task Name: <input type="text" name="task_name" value="<?php echo $task_name;?>">
       Task Duration (sec): <input type="number" name="task_duration" value="<?php echo $task_duration;?>">
       <input type="submit" name="submit" value="Submit">
     </form>
 
     <?php
+      $taskname = $_POST['task_name'];
+      $taskduration = $_POST['task_duration'];
 
+      $db = mysql_connect("localhost","root");
+      $db_select = mysql_select_db("magic_mirror");
 
     ?>
 
